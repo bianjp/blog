@@ -1,0 +1,9 @@
+name = "bianjp"
+license = "MIT"
+description = "A Hugo theme matching the original Spring Boot blog design using Semantic UI"
+tags = ["blog", "clean"]
+features = ["blog", "tags", "tag-cloud", "pagination"]
+min_version = "0.112.0"
+
+[author]
+  name = "Bian Jiaping"

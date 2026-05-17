@@ -1,0 +1,45 @@
+{{ define "main" }}
+<main class="post-list posts-of-tag">
+  <h1 class="ui title">Tag: <span>{{ .Data.Term }}</span></h1>
+  {{ range .Paginator.Pages }}
+  <section class="ui very padded segment post">
+    <h2 class="ui header"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    {{ partial "post-meta.html" . }}
+    <div class="ui divider"></div>
+    <div class="post-content">{{ .Summary }}</div>
+    <a class="read-more" href="{{ .RelPermalink }}">Read more >></a>
+  </section>
+  {{ end }}
+
+  {{ if gt .Paginator.TotalPages 1 }}
+  <div class="pagination-container">
+    <div class="ui pagination menu">
+      {{ if .Paginator.HasPrev }}
+      <a class="icon item prev" href="{{ .Paginator.Prev.URL }}">
+        <i class="left chevron icon"></i>
+      </a>
+      {{ else }}
+      <a class="icon item prev disabled">
+        <i class="left chevron icon"></i>
+      </a>
+      {{ end }}
+
+      {{ $currentPage := .Paginator.PageNumber }}
+      {{ range .Paginator.Pagers }}
+      <a class="item{{ if eq .PageNumber $currentPage }} active{{ end }}" href="{{ .URL }}">{{ .PageNumber }}</a>
+      {{ end }}
+
+      {{ if .Paginator.HasNext }}
+      <a class="icon item next" href="{{ .Paginator.Next.URL }}">
+        <i class="right chevron icon"></i>
+      </a>
+      {{ else }}
+      <a class="icon item next disabled">
+        <i class="right chevron icon"></i>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+</main>
+{{ end }}

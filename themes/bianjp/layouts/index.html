@@ -1,0 +1,70 @@
+{{ define "body" }}
+{{/* Calculate min/max tag counts for tag cloud */}}
+{{ $minCount := 999 }}
+{{ $maxCount := 0 }}
+{{ range .Site.Taxonomies.tags.ByCount }}
+  {{ if lt .Count $minCount }}{{ $minCount = .Count }}{{ end }}
+  {{ if gt .Count $maxCount }}{{ $maxCount = .Count }}{{ end }}
+{{ end }}
+
+{{/* Only include pages from the "posts" section */}}
+{{ $posts := where .Site.RegularPages "Type" "posts" }}
+{{ $paginator := .Paginate $posts }}
+
+<main class="page-width page-main with-sidebar">
+  <main class="post-list">
+    {{ range $paginator.Pages }}
+    <section class="ui very padded segment post">
+      <h2 class="ui header"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+      {{ partial "post-meta.html" . }}
+      <div class="ui divider"></div>
+      <div class="post-content">{{ .Summary }}</div>
+      <a class="read-more" href="{{ .RelPermalink }}">Read more >></a>
+    </section>
+    {{ end }}
+
+    {{ if gt $paginator.TotalPages 1 }}
+    <div class="pagination-container">
+      <div class="pagination">
+        {{ if $paginator.HasPrev }}
+        <a class="icon item prev" href="{{ $paginator.Prev.URL }}">
+          <i class="left chevron icon"></i>
+        </a>
+        {{ else }}
+        <a class="icon item prev disabled">
+          <i class="left chevron icon"></i>
+        </a>
+        {{ end }}
+
+        {{ $currentPage := $paginator.PageNumber }}
+        {{ range $paginator.Pagers }}
+        <a class="item{{ if eq .PageNumber $currentPage }} active{{ end }}" href="{{ .URL }}">{{ .PageNumber }}</a>
+        {{ end }}
+
+        {{ if $paginator.HasNext }}
+        <a class="icon item next" href="{{ $paginator.Next.URL }}">
+          <i class="right chevron icon"></i>
+        </a>
+        {{ else }}
+        <a class="icon item next disabled">
+          <i class="right chevron icon"></i>
+        </a>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+  </main>
+
+  <aside class="page-sidebar ui padded segment">
+    <section>
+      <h2 class="ui header">Tags</h2>
+      <div class="ui divider"></div>
+      <div class="tag-cloud">
+        {{ range .Site.Taxonomies.tags.ByCount }}
+          <a href="{{ .Page.RelPermalink }}" style="font-size: {{ partial "tag-font-size.html" (dict "count" .Count "min" $minCount "max" $maxCount) }}rem;">{{ .Page.Data.Term }}</a>
+        {{ end }}
+      </div>
+    </section>
+  </aside>
+</main>
+{{ end }}

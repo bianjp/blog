@@ -1,0 +1,222 @@
+/* Global */
+
+/* Menu */
+.page-header {
+  display: flex;
+  background: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  border-radius: 0.28571429rem;
+  min-height: 2.85714286em;
+
+  position: fixed;
+  z-index: 101;
+  margin: 0;
+  width: 100%;
+  height: 60px;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  border: none;
+  box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
+}
+
+.page-header .logo {
+  display: inline-block;
+  vertical-align: middle;
+  margin: -0.3em 0;
+  width: 40px;
+}
+
+.page-header .item {
+  position: relative;
+  vertical-align: middle;
+  line-height: 1;
+  text-decoration: none;
+  flex: 0 0 auto;
+  user-select: none;
+  background: none;
+  padding: 0.92857143em 1.14285714em;
+  color: rgba(0, 0, 0, 0.87);
+  text-transform: none;
+  font-weight: 400;
+
+  display: flex;
+  align-items: center;
+}
+
+.page-header .item.active,
+.page-header .item:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.95);
+}
+
+.page-header > .container {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.page-width {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 10px;
+  margin-left: auto !important;
+  margin-right: auto !important
+}
+
+/* Layout */
+.page-main.page-width {
+  display: flex;
+  align-items: flex-start;
+  gap: 1em;
+
+  flex: 1 4 auto;
+  margin: 0 auto;
+  padding: 65px 10px 20px 10px;
+}
+
+.page-main .post-list > .post {
+  margin: 0 0 1rem;
+}
+
+.page-main .post-list > .post:last-child {
+  margin-bottom: 0;
+}
+
+.page-main > .page-sidebar {
+  flex: 0 0 auto;
+  width: 300px;
+  margin: 0;
+  padding: 20px;
+  background-color: #fff;
+}
+
+@media (max-width: 768px) {
+  .page-main .page-sidebar {
+    display: none;
+  }
+}
+
+/* Tag cloud */
+.tag-cloud {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 5px;
+  line-height: 1.2;
+}
+
+/* Post list pagination */
+.post-list > .pagination-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Post meta */
+.post-meta-items {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.post-meta-items .item {
+  display: inline-block;
+  margin: 2px 1em 2px 0;
+}
+
+.post-meta-items .item:last-child {
+  margin-right: 0;
+}
+
+.post-meta-items .item .icon {
+  opacity: 0.9;
+  margin-right: 0.35714286em;
+}
+
+/* Read more link */
+.post .read-more {
+  display: inline-block;
+  margin-top: 10px;
+}
+
+/* Post content */
+.post-content {
+  word-wrap: break-word;
+}
+
+.post-content .paragraph {
+  margin: 15px 0;
+}
+
+.post-content img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.post-content pre,
+.post-content .highlight {
+  margin: 1em 0;
+  overflow: auto;
+}
+
+.post-content pre {
+  padding: 0;
+}
+
+.post-content pre code {
+  font-size: 0.92857143em;
+}
+
+.post-content .highlight pre {
+  margin: 0;
+  padding: 1em;
+  border-radius: 0.28571429rem;
+}
+
+/* Nested list fix (from asciidoc) */
+.post-content li > p + .ulist {
+  margin-top: -0.8em;
+}
+
+/* Headings inside post content (about page sections, article body) */
+.post-content h2 {
+  font-size: 1.71428571rem;
+  font-weight: 700;
+  margin: calc(2rem - 0.14285714em) 0 1rem;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.post-content h3 {
+  font-size: 1.28571429rem;
+  font-weight: 700;
+  margin: calc(2rem - 0.14285714em) 0 1rem;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+/* Post title link style */
+.post .ui.header a {
+  color: #4183c4;
+}
+
+.post .ui.header a:hover {
+  color: #1e70bf;
+}
+
+/* Single post title - black, not a link */
+article .ui.header,
+section .ui.header {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+article .ui.header a,
+section .ui.header a {
+  color: #4183c4;
+}
+
+/* Sidebar header */
+.page-sidebar .ui.header {
+  margin-top: 0;
+}

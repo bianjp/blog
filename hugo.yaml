@@ -1,0 +1,24 @@
+baseURL: https://bianjp.com/
+locale: en-us
+title: bianjp's Blog
+theme: bianjp
+paginate: 10
+
+menu:
+  main:
+    - name: About
+      url: /about/
+      weight: 10
+
+markup:
+  goldmark:
+    renderHooks:
+      image:
+        # Convert relative url to absolute url.
+        # Relative url can not work for both homepage and post detail page
+        enableDefault: true
+  highlight:
+    style: monokai
+    lineNos: false
+    noClasses: false
+    codeFences: true

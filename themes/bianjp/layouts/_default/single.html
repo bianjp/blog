@@ -1,0 +1,15 @@
+{{ define "main" }}
+{{ if eq .Section "posts" }}
+<article class="ui very padded segment">
+  <h1 class="ui header">{{ .Title }}</h1>
+  {{ partial "post-meta.html" . }}
+  <div class="ui divider"></div>
+  <div class="post-content">{{ .Content }}</div>
+</article>
+{{ else }}
+<section class="ui very padded segment">
+  <h1 class="ui header">{{ .Title }}</h1>
+  <div class="post-content">{{ .Content }}</div>
+</section>
+{{ end }}
+{{ end }}

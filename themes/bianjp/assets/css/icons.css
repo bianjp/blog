@@ -1,0 +1,48 @@
+@font-face {
+  font-family: Icons;
+  src: url("{{ "fonts/icons.woff2" | relURL }}") format("woff2"),
+    url("{{ "fonts/icons.woff" | relURL }}") format("woff");
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-decoration: inherit;
+  text-transform: none;
+}
+
+i.icon {
+  display: inline-block;
+  opacity: 1;
+  margin: 0 0.25rem 0 0;
+  width: 1.18em;
+  height: 1em;
+  font-family: Icons, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  text-decoration: inherit;
+  text-align: center;
+  speak: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+i.icon:before {
+  background: none !important;
+}
+
+i.icon.calendar:before {
+  content: "\f133";
+}
+
+i.icon.edit:before {
+  content: "\f044";
+}
+
+i.icon.left.chevron:before,
+i.left.chevron.icon:before {
+  content: "\f053";
+}
+
+i.icon.right.chevron:before,
+i.right.chevron.icon:before {
+  content: "\f054";
+}

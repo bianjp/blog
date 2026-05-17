@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ if .Title }}{{ .Title }} - {{ end }}{{ .Site.Title }}{{ end }}</title>
+  <link rel="icon" href="{{ "favicon.png" | relURL }}">
+  <link rel="preload" href="{{ "logo.png" | relURL }}" as="image">
+  {{ $icons := resources.Get "css/icons.css" | resources.ExecuteAsTemplate "css/icons.css" . }}
+  {{ $css := slice
+    (resources.Get "css/base.css")
+    $icons
+    (resources.Get "css/application.css")
+    (resources.Get "css/chroma.css")
+    | resources.Concat "css/site.css"
+    | minify
+    | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+</head>
+<body class="{{ .Params.bodyClass }}">
+<header class="page-header ui top fixed borderless menu">
+  <div class="page-width container">
+    <a class="item" href="{{ "/" | relURL }}"><img class="logo" src="{{ "logo.png" | relURL }}" alt="LOGO" width="40" height="40"></a>
+    <a class="item{{ if .IsHome }} active{{ end }}" href="{{ "/" | relURL }}">Home</a>
+    {{ $currentURL := .RelPermalink }}
+    {{ range .Site.Menus.main }}
+      <a class="item{{ if eq $currentURL .URL }} active{{ end }}" href="{{ .URL | relURL }}">{{ .Name }}</a>
+    {{ end }}
+  </div>
+</header>
+
+{{ block "body" . }}
+<main class="page-width page-main {{ .Params.containerClass }}">
+  {{ block "main" . }}{{ end }}
+</main>
+{{ end }}
+</body>
+</html>

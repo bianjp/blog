@@ -1,0 +1,11 @@
+{{- /* Calculate tag cloud font size: min 1rem, max 3rem, linear scale */ -}}
+{{- /* Usage: partial "tag-font-size.html" (dict "count" .Count "min" $minCount "max" $maxCount) */ -}}
+{{- $count := .count -}}
+{{- $minCount := .min -}}
+{{- $maxCount := .max -}}
+{{- if eq $maxCount $minCount -}}
+1
+{{- else -}}
+{{- $result := mul 3.0 (div (sub $count $minCount) (sub $maxCount $minCount)) -}}
+{{- if lt $result 1.0 }}1{{ else }}{{ printf "%.1f" $result }}{{ end -}}
+{{- end -}}

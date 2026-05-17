@@ -1,0 +1,13 @@
+<div class="post-meta-items">
+  <div class="item">
+    <i class="calendar icon" title="Posted on"></i>{{ .Date.Format "Jan 2, 2006" }}
+  </div>
+  <div class="item">
+    <i class="edit icon" title="Last updated on"></i>{{ .Lastmod.Format "Jan 2, 2006" }} UTC
+  </div>
+  <div class="item">
+    {{ range .GetTerms "tags" }}
+      <a class="ui label" href="{{ .RelPermalink }}">{{ .Data.Term }}</a>
+    {{ end }}
+  </div>
+</div>
